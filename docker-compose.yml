@@ -5,6 +5,6 @@ services:
 
   local:
     build: .
-    image: dclure/pyspark-deploy-example
+    image: dclure/pyspark-pi
     volumes:
       - ./code:/code

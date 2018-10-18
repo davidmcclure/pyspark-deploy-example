@@ -22,6 +22,7 @@ def main(n, res_fh):
     pi =  4 * count / n
 
     print(pi)
+    print(pi, file=res_fh)
 
 
 if __name__ == '__main__':
