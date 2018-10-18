@@ -6,20 +6,22 @@ import random
 from utils import get_spark, lpf
 
 
+def inside(p):
+    x, y = random.random(), random.random()
+    return x*x + y*y < 1
+
+
 @click.command()
-@click.argument('n', default=100000)
+@click.argument('n', type=int, default=1e9)
 @click.argument('res_fh', type=click.File('w'), default='res.txt')
 def main(n, res_fh):
 
     sc, _ = get_spark()
 
-    data = random.sample(range(n), n)
-    data = sc.parallelize(data)
+    count = sc.parallelize(range(n)).filter(inside).count()
+    pi =  4 * count / n
 
-    result = data.map(lpf).max()
-
-    print(result, file=res_fh)
-    print(result)
+    print(pi)
 
 
 if __name__ == '__main__':
