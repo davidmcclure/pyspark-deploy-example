@@ -1,0 +1,10 @@
+
+version: '3'
+
+services:
+
+  local:
+    build: .
+    image: dclure/pyspark-deploy-example
+    volumes:
+      - ./code:/code
