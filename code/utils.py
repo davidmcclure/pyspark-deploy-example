@@ -1,16 +1,18 @@
 
 
+import time
+
 from pyspark import SparkContext
 from pyspark.sql import SparkSession
 
 
-def get_spark():
+def get_spark(wait=0):
     """Get spark connections.
     """
-    sc = SparkContext.getOrCreate()
-    spark = SparkSession(sc).builder.getOrCreate()
+    spark = SparkSession.builder.getOrCreate()
+    time.sleep(wait)
 
-    return sc, spark
+    return spark.sparkContext, spark
 
 
 def lpf(a):

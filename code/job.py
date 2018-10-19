@@ -16,7 +16,7 @@ def inside(p):
 @click.argument('res_fh', type=click.File('w'), default='res.txt')
 def main(n, res_fh):
 
-    sc, _ = get_spark()
+    sc, _ = get_spark(wait=3)
 
     count = sc.parallelize(range(n)).filter(inside).count()
     pi =  4 * count / n
