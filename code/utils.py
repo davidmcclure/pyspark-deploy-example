@@ -2,14 +2,17 @@
 
 import time
 
-from pyspark import SparkContext
 from pyspark.sql import SparkSession
 
 
 def get_spark(wait=0):
-    """Get spark connections.
+    """Get Spark connections.
+
+    Returns: SparkContext, SparkSession
     """
     spark = SparkSession.builder.getOrCreate()
+
+    # Wait for executors to register.
     time.sleep(wait)
 
     return spark.sparkContext, spark
