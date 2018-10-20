@@ -25,7 +25,7 @@ def main(n, res_fh):
     time.sleep(3)
 
     count = sc.parallelize(range(n)).filter(inside).count()
-    pi =  4 * count / n
+    pi = 4 * count / n
 
     print(pi)
     print(pi, file=res_fh)
