@@ -4,18 +4,7 @@ import click
 import random
 import time
 
-from pyspark.sql import SparkSession
-
-
-def get_spark(wait=0):
-    """Get Spark context + session. Wait for executors to register.
-
-    Returns: SparkContext, SparkSession
-    """
-    spark = SparkSession.builder.getOrCreate()
-    time.sleep(wait)
-
-    return spark.sparkContext, spark
+from pyspark import SparkContext
 
 
 def inside(p):
@@ -32,7 +21,8 @@ def inside(p):
 def main(n, res_fh):
     """Estimate pi by sampling a billion random points.
     """
-    sc, _ = get_spark(wait=3)
+    sc = SparkContext.getOrCreate()
+    time.sleep(3)
 
     count = sc.parallelize(range(n)).filter(inside).count()
     pi =  4 * count / n
