@@ -1,5 +1,5 @@
 
-# `pyspark-deploy` example project
+## `pyspark-deploy` example project
 
 A minimal example project that deploys a Python + Spark project using [pyspark-deploy](https://github.com/davidmcclure/pyspark-deploy).
 
